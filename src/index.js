@@ -1,12 +1,14 @@
 document.addEventListener("DOMContentLoaded", () => {
- document.getElementById("create-task-form").addEventListener('submit',function(e){
-  let toDoList = document.getElementById("new-task-description").value;
-  let ul=document.getElementById("list").createElement('ul');
-     ul.innerHTML += `<li> ${toDoList}</li>`;
-     document.body.appendChild(ul);
-     document.getElementById("new-task-description").value='';
-     e.preventDefault();
-
+ 
+  const form = document.getElementById("create-task-form");
+  form.addEventListener("submit", AddTask);
 });
 
-});
+const AddTask = event => {
+  event.preventDefault();
+  const task = document.getElementById("new-task-description");
+  const newTask = document.createElement("li");
+  newTask.innerText = task.value;
+  task.value='';
+   document.getElementById("tasks").appendChild(newTask);
+};
